@@ -1,23 +1,35 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
   entry: [
     './src/index.js'
   ],
   output: {
-    path: __dirname,
-    publicPath: '/',
+    path: 'build',
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
-      exclude: /node_modules/,
-      loader: 'babel'
-    }]
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel'
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
+      },
+      {
+        test: /\.(png|eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+        loader: 'url'
+      }
+    ]
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
+  plugins: [
+    new ExtractTextPlugin('vensa-dashboard.css')
+  ],
   devServer: {
     historyApiFallback: true,
-    contentBase: './'
+    contentBase: './build'
   }
 };

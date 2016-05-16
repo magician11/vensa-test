@@ -1,0 +1,49 @@
+$white: #fff;
+
+/* GENERAL STYLING */
+body {
+  background-color: #085394;
+  font-family: sans-serif;
+  color: $white;
+}
+
+/* HEADER */
+header img {
+  width: 111px;
+}
+
+/* DASHBOARD OVERALL */
+.dashboard {
+  display: flex;
+
+  > div {
+    border: 1px solid $white;
+  }
+}
+
+/* NAVIGATION */
+.navigation {
+  flex: 0 0 5rem;
+  text-align: center;
+
+  > div {
+    padding: 0.8rem 0;
+  }
+}
+
+/* INBOX */
+.inbox {
+  flex: 0 0 55%;
+}
+
+/* MESSAGE DETAIL */
+.message-detail {
+  flex: 0 0 20%;
+}
+
+/* FOOTER */
+footer {
+  background-color: rgba(255,255,255,0.3);
+  padding: 0.8rem;
+  text-align: center;
+}
