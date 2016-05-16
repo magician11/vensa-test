@@ -1,5 +1,10 @@
 $white: #fff;
 
+/* MIXINS */
+@mixin border-debug() {
+  border: 1px solid $white;
+}
+
 /* GENERAL STYLING */
 body {
   background-color: #085394;
@@ -13,12 +18,8 @@ header img {
 }
 
 /* DASHBOARD OVERALL */
-.dashboard {
+.vensa-dashboard {
   display: flex;
-
-  > div {
-    border: 1px solid $white;
-  }
 }
 
 /* NAVIGATION */
@@ -28,17 +29,29 @@ header img {
 
   > div {
     padding: 0.8rem 0;
+
+    &:hover {
+      background-color: rgba($white ,0.3);
+      cursor: pointer;
+    }
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
   }
 }
 
 /* INBOX */
 .inbox {
   flex: 0 0 55%;
+  @include border-debug();
 }
 
 /* MESSAGE DETAIL */
 .message-detail {
   flex: 0 0 20%;
+  @include border-debug();
 }
 
 /* FOOTER */

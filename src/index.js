@@ -1,31 +1,21 @@
 // libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-// React components
-import Header from './components/Header';
-import Navigation from './components/Navigation';
-import Inbox from './components/Inbox';
-import MessageDetail from './components/MessageDetail';
-import Footer from './components/Footer';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import promise from 'redux-promise';
+import { Router, browserHistory } from 'react-router';
+import routes from './routes';
+import reducers from './reducers';
 
 // styling
 require('font-awesome/scss/font-awesome.scss');
 require('./styles/style.scss');
 
-const VensaDashboard = () => {
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-  return (
-    <div>
-      <Header />
-      <div className="dashboard">
-        <Navigation />
-        <Inbox />
-        <MessageDetail />
-      </div>
-      <Footer />
-    </div>
-  );
-};
-
-ReactDOM.render(<VensaDashboard />, document.querySelector('.container'));
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <Router history={browserHistory} routes={routes} />
+  </Provider>
+  , document.querySelector('.container'));
