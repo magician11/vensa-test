@@ -7,7 +7,7 @@ import Todo from './components/Todo';
 export default (
   <Route path="/" component={VensaDashboard}>
     <IndexRoute component={Todo} />
-    <Route path="/message" component={Inbox}/>
-    <Route path="/todo" component={Todo}/>
+    <Route path="/message" component={Inbox} />
+    <Route path="/todo/:todoPage" component={Todo} />
   </Route>
 );
