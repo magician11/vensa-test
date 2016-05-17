@@ -1,13 +1,19 @@
+/* CONSTANTS */
 $white: #fff;
 $black: #000;
+$opacityLevel: 0.3;
 
 /* MIXINS */
 @mixin border-debug() {
   border: 1px solid $white;
 }
 
-@mixin opaqueBackground() {
-  background-color: rgba($white ,0.3);
+@mixin opaqueBackground($color) {
+  background-color: rgba($color, $opacityLevel);
+}
+
+@mixin navOpaqueBackground($color) {
+  @include opaqueBackground($color);
   cursor: pointer;
 }
 
@@ -16,6 +22,15 @@ body {
   background-color: #085394;
   font-family: sans-serif;
   color: $white;
+  margin: 0;
+}
+
+a {
+  color: $white;
+
+  &:hover {
+    color: darken($white, 33%);
+  }
 }
 
 /* HEADER */
@@ -34,28 +49,30 @@ header img {
   text-align: center;
 
   a.active-link > .nav-item {
-    @include opaqueBackground();
+    @include navOpaqueBackground($white);
   }
 
   .nav-item {
-    padding: 0.8rem 0;
+    padding: 0.8rem 0.3rem;
 
     &:hover {
-      @include opaqueBackground();
+      @include navOpaqueBackground($white);
     }
   }
 
   a {
-    color: $white;
     text-decoration: none;
   }
 }
 
 /* MAIN PANEL */
 .main-panel {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 80%;
-  background-color: $black;
-  border: 1px solid $white;
+  @include opaqueBackground($black);
 }
 
 @keyframes slideInFromLeft {
@@ -71,34 +88,24 @@ header img {
   }
 }
 
-.sliding-blade-enter {
+.sliding-blade-enter .main-panel {
   animation: slideInFromLeft 300ms;
 }
 
-.sliding-blade-leave {
-  opacity: 1;
-}
-
-.sliding-blade-leave.sliding-blade-leave-active {
+.sliding-blade-leave .main-panel {
   opacity: 0;
-  transition: opacity 110ms ease-in;
 }
 
 /* INBOX */
 .inbox {
-  flex: 0 0 55%;
+  flex: 0 0 65%;
+  background-color: $black;
   @include border-debug();
 
   table {
     width: 100%;
     text-align: center;
   }
-}
-
-/* TODO */
-.todo {
-  text-align: center;
-  margin-top: 11%;
 }
 
 /* MESSAGE DETAIL */
@@ -109,7 +116,7 @@ header img {
 
 /* FOOTER */
 footer {
-  background-color: rgba(255,255,255,0.3);
+  @include opaqueBackground($white);
   padding: 0.8rem;
   text-align: center;
 }

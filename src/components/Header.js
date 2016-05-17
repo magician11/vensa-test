@@ -1,11 +1,12 @@
 import React from 'react';
+import { IndexLink } from 'react-router';
 
 import LogoImg from '../images/logo-white.png';
 
 const Header = () => {
   return (
     <header>
-      <img src={LogoImg} alt="Vensa logo" />
+      <IndexLink to='/'><img src={LogoImg} alt="Vensa logo" /></IndexLink>
     </header>
   );
 };

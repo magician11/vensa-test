@@ -26,7 +26,7 @@ class Inbox extends Component {
   render() {
 
     return (
-      <div className="inbox">
+      <div className="inbox main-panel">
         <table>
           <thead>
             <tr>
