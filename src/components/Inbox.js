@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-//import { Link } from 'react-router';
 import { fetchMessages } from '../actions/index';
-
 
 class Inbox extends Component {
 
@@ -11,35 +9,45 @@ class Inbox extends Component {
   }
 
   renderMessages() {
-    console.log('rendering messages...');
-    console.log(this.props.messages);
     return this.props.messages.map((message) => {
-      console.log(message);
       return (
-        <li>
-          {message.Id}
-        </li>
+        <tr key={message.Id}>
+          <td>{message.NHI}</td>
+          <td>{message.PatientName}</td>
+          <td>{message.Body}</td>
+          <td>{message.ReceivedDateTime}</td>
+          <td>{message.AddOn}</td>
+          <td>{message.Status}</td>
+        </tr>
       );
     });
   }
 
   render() {
-    console.log('Rendering Inbox Component...', this.props.messages);
-    //console.log('Messages...', this.props.messages[0].length);
 
     return (
       <div className="inbox">
-        <p>inbox</p>
-        <ul>
-          { this.renderMessages() }
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>NHI</th>
+              <th>Patient Name</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th>Add-on</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.renderMessages() }
+          </tbody>
+        </table>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  console.log('mapping state to props', state);
   return { messages: state.inbox.messages };
 }
 

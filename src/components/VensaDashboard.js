@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 // React components
 import Header from './Header';
@@ -11,7 +12,11 @@ const VensaDashboard = (props) => {
       <Header />
       <div className="vensa-dashboard">
         <Navigation />
-        {props.children}
+        <ReactCSSTransitionGroup component="div" className="main-panel" transitionName="sliding-blade" transitionEnterTimeout={300} transitionLeaveTimeout={110}>
+          {React.cloneElement(props.children, {
+            key: props.location.pathname
+          })}
+        </ReactCSSTransitionGroup>
       </div>
       <Footer />
     </div>
