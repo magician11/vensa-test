@@ -9,15 +9,15 @@ class Inbox extends Component {
   }
 
   renderMessages() {
-    return this.props.messages.map((message) => {
+    return this.props.inbox.messages.map((message) => {
       return (
         <tr key={message.Id}>
-          <td>{message.NHI}</td>
-          <td>{message.PatientName}</td>
-          <td>{message.Body}</td>
-          <td>{message.ReceivedDateTime}</td>
-          <td>{message.AddOn}</td>
-          <td>{message.Status}</td>
+        <td>{message.NHI}</td>
+        <td>{message.PatientName}</td>
+        <td>{message.Body}</td>
+        <td>{message.ReceivedDateTime}</td>
+        <td>{message.AddOn}</td>
+        <td>{message.Status}</td>
         </tr>
       );
     });
@@ -25,8 +25,18 @@ class Inbox extends Component {
 
   render() {
 
-    return (
-      <div className="inbox main-panel">
+    let panelContent;
+
+    if (this.props.inbox.isFetching) {
+      panelContent = (
+        <div className="loader">
+          <i className="fa fa-leaf fa-spin fa-4x"></i>
+          <h2>Loading...</h2>
+          <span className="sr-only">Loading...</span>
+        </div>
+      );
+    } else {
+      panelContent = (
         <table>
           <thead>
             <tr>
@@ -42,13 +52,19 @@ class Inbox extends Component {
             { this.renderMessages() }
           </tbody>
         </table>
+      );
+    }
+
+    return (
+      <div className="inbox main-panel">
+        {panelContent}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { messages: state.inbox.messages };
+  return { inbox: state.inbox };
 }
 
 export default connect(mapStateToProps, { fetchMessages })(Inbox);

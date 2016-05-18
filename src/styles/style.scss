@@ -57,6 +57,7 @@ header img {
 
     &:hover {
       @include navOpaqueBackground($white);
+      color: $white;
     }
   }
 
@@ -99,8 +100,12 @@ header img {
 /* INBOX */
 .inbox {
   flex: 0 0 65%;
-  background-color: $black;
-  @include border-debug();
+  background-color: $white;
+  color: $black;
+
+  .loader {
+    text-align: center;
+  }
 
   table {
     width: 100%;
