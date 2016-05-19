@@ -12,12 +12,12 @@ class Inbox extends Component {
     return this.props.inbox.messages.map((message) => {
       return (
         <tr key={message.Id}>
-        <td>{message.NHI}</td>
-        <td>{message.PatientName}</td>
-        <td>{message.Body}</td>
-        <td>{message.ReceivedDateTime}</td>
-        <td>{message.AddOn}</td>
-        <td>{message.Status}</td>
+          <td>{message.NHI}</td>
+          <td>{message.PatientName}</td>
+          <td>{message.Body}</td>
+          <td>{message.ReceivedDateTime}</td>
+          <td>{message.AddOn}</td>
+          <td>{message.Status}</td>
         </tr>
       );
     });
