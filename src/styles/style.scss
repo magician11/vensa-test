@@ -1,6 +1,9 @@
 /* CONSTANTS */
 $white: #ffffff;
 $black: #000000;
+$yellow: #FFFF00;
+$red: #FF0000;
+$green: #008000;
 $opacityLevel: 0.3;
 
 /* MIXINS */
@@ -31,6 +34,18 @@ a {
   &:hover {
     color: darken($white, 33%);
   }
+}
+
+.red {
+  color: $red;
+}
+
+.yellow {
+  color: $yellow;
+}
+
+.green {
+  color: $green;
 }
 
 /* HEADER */

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchMessages } from '../actions/index';
 import DataCell from './DataCell';
 import DateCell from './DateCell';
+import StatusCell from './StatusCell';
 
 class Inbox extends Component {
 
@@ -62,8 +63,9 @@ class Inbox extends Component {
           />
           <Column
             header={<Cell>Status</Cell>}
-            cell={<DataCell data={messages} field="Status" />}
+            cell={<StatusCell data={messages} field="Status" />}
             width={100}
+            flexGrow={1}
           />
         </Table>
       );
