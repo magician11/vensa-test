@@ -3,7 +3,7 @@ import { FETCHING_MESSAGES, RECEIVED_MESSAGES, SORT_MESSAGES } from '../actions/
 const INITIAL_STATE = {
   messages: [],
   isFetching: false,
-  sortKey: ''
+  sortKey: 'SentDateTime'
 };
 
 export default function (state = INITIAL_STATE, action) {
