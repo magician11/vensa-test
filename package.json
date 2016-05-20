@@ -19,11 +19,13 @@
   "dependencies": {
     "font-awesome": "^4.6.1",
     "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.13.0",
     "react": "^15.0.2",
     "react-addons-css-transition-group": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.0",
+    "react-time": "^4.1.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
   },

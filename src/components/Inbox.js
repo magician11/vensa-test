@@ -3,6 +3,7 @@ import { Table, Column, Cell } from 'fixed-data-table';
 import { connect } from 'react-redux';
 import { fetchMessages } from '../actions/index';
 import DataCell from './DataCell';
+import DateCell from './DateCell';
 
 class Inbox extends Component {
 
@@ -40,18 +41,19 @@ class Inbox extends Component {
             header={<Cell>Patient Name</Cell>}
             cell={<DataCell data={messages} field="PatientName" />}
             width={100}
-            flexGrow={2}
+            flexGrow={1}
           />
           <Column
             header={<Cell>Message</Cell>}
             cell={<DataCell data={messages} field="Body" />}
             width={100}
-            flexGrow={3}
+            flexGrow={2}
           />
           <Column
             header={<Cell>Date</Cell>}
-            cell={<DataCell data={messages} field="ReceivedDateTime" />}
+            cell={<DateCell data={messages} field="SentDateTime" />}
             width={100}
+            flexGrow={1}
           />
           <Column
             header={<Cell>Add-on</Cell>}
