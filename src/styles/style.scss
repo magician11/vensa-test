@@ -126,6 +126,15 @@ header img {
     width: 100%;
     text-align: center;
   }
+
+  .cell-header a {
+    color: $black;
+    cursor: pointer;
+  }
+
+  .cell-header.active a {
+    color: $green;
+  }
 }
 
 /* MESSAGE DETAIL */

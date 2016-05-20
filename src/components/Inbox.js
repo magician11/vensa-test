@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { Table, Column, Cell } from 'fixed-data-table';
+import { Table, Column } from 'fixed-data-table';
 import { connect } from 'react-redux';
-import { fetchMessages } from '../actions/index';
+import { fetchMessages, sortMessages } from '../actions/index';
 import DataCell from './DataCell';
 import DateCell from './DateCell';
 import StatusCell from './StatusCell';
+import CellHeader from './CellHeader';
 
 class Inbox extends Component {
 
@@ -34,36 +35,42 @@ class Inbox extends Component {
           height={550}
           headerHeight={50}>
           <Column
-            header={<Cell>NHI</Cell>}
-            cell={<DataCell data={messages} field="NHI" />}
+            columnKey="NHI"
+            header={<CellHeader {...this.props}>NHI</CellHeader>}
+            cell={<DataCell data={messages} />}
             width={100}
           />
           <Column
-            header={<Cell>Patient Name</Cell>}
-            cell={<DataCell data={messages} field="PatientName" />}
+            columnKey="PatientName"
+            header={<CellHeader {...this.props}>Patient Name</CellHeader>}
+            cell={<DataCell data={messages} />}
             width={100}
             flexGrow={1}
           />
           <Column
-            header={<Cell>Message</Cell>}
-            cell={<DataCell data={messages} field="Body" />}
+            columnKey="Body"
+            header={<CellHeader {...this.props}>Message</CellHeader>}
+            cell={<DataCell data={messages} />}
             width={100}
             flexGrow={2}
           />
           <Column
-            header={<Cell>Date</Cell>}
-            cell={<DateCell data={messages} field="SentDateTime" />}
+            columnKey="SentDateTime"
+            header={<CellHeader {...this.props}>Date</CellHeader>}
+            cell={<DateCell data={messages} />}
             width={100}
             flexGrow={1}
           />
           <Column
-            header={<Cell>Add-on</Cell>}
-            cell={<DataCell data={messages} field="AddOn" />}
+            columnKey="AddOn"
+            header={<CellHeader {...this.props}>Add-on</CellHeader>}
+            cell={<DataCell data={messages} />}
             width={100}
           />
           <Column
-            header={<Cell>Status</Cell>}
-            cell={<StatusCell data={messages} field="Status" />}
+            columnKey="Status"
+            header={<CellHeader {...this.props}>Status</CellHeader>}
+            cell={<StatusCell data={messages} />}
             width={100}
             flexGrow={1}
           />
@@ -83,4 +90,4 @@ function mapStateToProps(state) {
   return { inbox: state.inbox };
 }
 
-export default connect(mapStateToProps, { fetchMessages })(Inbox);
+export default connect(mapStateToProps, { fetchMessages, sortMessages })(Inbox);

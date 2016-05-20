@@ -1,9 +1,8 @@
 import React from 'react';
 import { Cell } from 'fixed-data-table';
 
-const StatusCell = (props) => {
-  const {rowIndex, field, data, ...otherProps} = props;
-  const statusId = data[rowIndex][field];
+const StatusCell = ({rowIndex, columnKey, data, ...props}) => {
+  const statusId = data[rowIndex][columnKey];
 
   let statusColor;
   let statusName;
@@ -25,7 +24,7 @@ const StatusCell = (props) => {
 
   const date = new Date();
   return (
-    <Cell {...otherProps}>
+    <Cell {...props}>
       <div className={statusColor}>{statusName}</div>
     </Cell>
   );

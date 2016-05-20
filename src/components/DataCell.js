@@ -1,11 +1,10 @@
 import React from 'react';
 import { Cell } from 'fixed-data-table';
 
-const DataCell = (props) => {
-  const {rowIndex, field, data, ...otherProps} = props;
+const DataCell = ({rowIndex, columnKey, data, ...props}) => {
   return (
-    <Cell {...otherProps}>
-    {data[rowIndex][field]}
+    <Cell {...props}>
+      {data[rowIndex][columnKey]}
     </Cell>
   );
 };
