@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { Table, Column, Cell } from 'fixed-data-table';
 import { connect } from 'react-redux';
 import { fetchMessages } from '../actions/index';
+import DataCell from './DataCell';
 
 class Inbox extends Component {
 
@@ -8,26 +10,12 @@ class Inbox extends Component {
     this.props.fetchMessages();
   }
 
-  renderMessages() {
-    return this.props.inbox.messages.map((message) => {
-      return (
-        <tr key={message.Id}>
-          <td>{message.NHI}</td>
-          <td>{message.PatientName}</td>
-          <td>{message.Body}</td>
-          <td>{message.ReceivedDateTime}</td>
-          <td>{message.AddOn}</td>
-          <td>{message.Status}</td>
-        </tr>
-      );
-    });
-  }
-
   render() {
 
+    const messages = this.props.inbox.messages;
     let panelContent;
 
-    if (this.props.inbox.isFetching) {
+    if (this.props.inbox.isFetching || (messages.length === 0)) {
       panelContent = (
         <div className="loader">
           <i className="fa fa-leaf fa-spin fa-4x"></i>
@@ -37,21 +25,45 @@ class Inbox extends Component {
       );
     } else {
       panelContent = (
-        <table>
-          <thead>
-            <tr>
-              <th>NHI</th>
-              <th>Patient Name</th>
-              <th>Message</th>
-              <th>Date</th>
-              <th>Add-on</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.renderMessages() }
-          </tbody>
-        </table>
+        <Table
+          rowHeight={50}
+          rowsCount={messages.length}
+          width={900}
+          height={550}
+          headerHeight={50}>
+          <Column
+            header={<Cell>NHI</Cell>}
+            cell={<DataCell data={messages} field="NHI" />}
+            width={100}
+          />
+          <Column
+            header={<Cell>Patient Name</Cell>}
+            cell={<DataCell data={messages} field="PatientName" />}
+            width={100}
+            flexGrow={2}
+          />
+          <Column
+            header={<Cell>Message</Cell>}
+            cell={<DataCell data={messages} field="Body" />}
+            width={100}
+            flexGrow={3}
+          />
+          <Column
+            header={<Cell>Date</Cell>}
+            cell={<DataCell data={messages} field="ReceivedDateTime" />}
+            width={100}
+          />
+          <Column
+            header={<Cell>Add-on</Cell>}
+            cell={<DataCell data={messages} field="AddOn" />}
+            width={100}
+          />
+          <Column
+            header={<Cell>Status</Cell>}
+            cell={<DataCell data={messages} field="Status" />}
+            width={100}
+          />
+        </Table>
       );
     }
 

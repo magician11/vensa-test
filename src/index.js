@@ -11,6 +11,7 @@ import reducers from './reducers';
 // styling
 require('font-awesome/scss/font-awesome.scss');
 require('./styles/style.scss');
+require('fixed-data-table/dist/fixed-data-table.min.css');
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
