@@ -120,22 +120,20 @@ header img {
   animation: slideInFromLeft 300ms;
 }
 
-.sliding-blade-leave .main-panel {
-  opacity: 0;
-}
-
-/* INBOX */
-.inbox {
-  flex: 0 0 65%;
+/* MESSAGE */
+.message {
+  flex: 0 0 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   background-color: $white;
   color: $black;
+}
+
+.inbox {
+  flex: 0 0 65%;
 
   .loader {
-    text-align: center;
-  }
-
-  table {
-    width: 100%;
     text-align: center;
   }
 
@@ -151,6 +149,10 @@ header img {
   .close-button {
     color: $black;
   }
+}
+
+.message-item {
+  min-height: 550px;
 }
 
 /* MESSAGE DETAIL */

@@ -3,7 +3,12 @@ import { Link } from 'react-router';
 
 const CloseButton = () => {
   return (
-    <Link to="/" className="close-button"><i className="fa fa-times fa-2x"></i></Link>
+    <Link to="/" className="close-button">
+      <span className="fa-stack fa-lg">
+        <i className="fa fa-square-o fa-stack-2x"></i>
+        <i className="fa fa-times fa-stack-1x"></i>
+      </span>
+    </Link>
   );
 };
 

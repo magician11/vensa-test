@@ -7,6 +7,7 @@ import DateCell from './DateCell';
 import StatusCell from './StatusCell';
 import CellHeader from './CellHeader';
 import CloseButton from './CloseButton';
+import Message from './Message';
 
 class Inbox extends Component {
 
@@ -25,10 +26,15 @@ class Inbox extends Component {
     });
   }
 
+  updateSelectedMessage(messageId) {
+    console.log(`clicked on ID ${messageId}`);
+  }
+
   render() {
     this.sortInbox();
 
     const messages = this.props.inbox.messages;
+    // console.log(messages[0]);
     let panelContent;
 
     if (this.props.inbox.isFetching || (messages.length === 0)) {
@@ -51,51 +57,54 @@ class Inbox extends Component {
           <Column
             columnKey="NHI"
             header={<CellHeader {...this.props}>NHI</CellHeader>}
-            cell={<DataCell data={messages} />}
+            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
             width={100}
           />
           <Column
             columnKey="PatientName"
             header={<CellHeader {...this.props}>Patient Name</CellHeader>}
-            cell={<DataCell data={messages} />}
+            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
             width={100}
             flexGrow={1}
           />
           <Column
             columnKey="Body"
             header={<CellHeader {...this.props}>Message</CellHeader>}
-            cell={<DataCell data={messages} />}
-            width={100}
-            flexGrow={2}
-          />
-          <Column
-            columnKey="SentDateTime"
-            header={<CellHeader {...this.props}>Date</CellHeader>}
-            cell={<DateCell data={messages} />}
-            width={100}
-            flexGrow={1}
-          />
-          <Column
-            columnKey="AddOn"
-            header={<CellHeader {...this.props}>Add-on</CellHeader>}
-            cell={<DataCell data={messages} />}
-            width={100}
-          />
-          <Column
-            columnKey="Status"
-            header={<CellHeader {...this.props}>Status</CellHeader>}
-            cell={<StatusCell data={messages} />}
-            width={100}
-            flexGrow={1}
-          />
+            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
+        width={100}
+        flexGrow={2}
+        />
+        <Column
+        columnKey="SentDateTime"
+        header={<CellHeader {...this.props}>Date</CellHeader>}
+        cell={<DateCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
+        width={100}
+        flexGrow={1}
+        />
+        <Column
+        columnKey="AddOn"
+        header={<CellHeader {...this.props}>Add-on</CellHeader>}
+        cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
+        width={100}
+        />
+        <Column
+        columnKey="Status"
+        header={<CellHeader {...this.props}>Status</CellHeader>}
+        cell={<StatusCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
+        width={100}
+        flexGrow={1}
+        />
         </Table>
       );
     }
 
     return (
-      <div className="inbox main-panel">
-        {panelContent}
-        <CloseButton />
+      <div className="message main-panel">
+      <div className="inbox">
+      {panelContent}
+      <CloseButton />
+      </div>
+      <Message messageId={this.props.inbox.messageId}/>
       </div>
     );
   }
