@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, Column } from 'fixed-data-table';
 import { connect } from 'react-redux';
-import { fetchMessages, sortMessages } from '../actions/index';
+import { fetchMessages, sortMessages, fetchMessage } from '../actions/index';
 import DataCell from './DataCell';
 import DateCell from './DateCell';
 import StatusCell from './StatusCell';
 import CellHeader from './CellHeader';
 import CloseButton from './CloseButton';
-import Message from './Message';
+import MessageDetail from './MessageDetail';
 
 class Inbox extends Component {
 
@@ -27,11 +27,11 @@ class Inbox extends Component {
   }
 
   updateSelectedMessage(messageId) {
-    console.log(`clicked on ID ${messageId}`);
+    this.props.fetchMessage(messageId);
   }
 
   render() {
-    this.sortInbox();
+    //this.sortInbox();
 
     const messages = this.props.inbox.messages;
     // console.log(messages[0]);
@@ -51,60 +51,60 @@ class Inbox extends Component {
           rowHeight={50}
           rowsCount={messages.length}
           width={900}
-          height={550}
+          height={650}
           headerHeight={50}
         >
           <Column
             columnKey="NHI"
             header={<CellHeader {...this.props}>NHI</CellHeader>}
-            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
+            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
             width={100}
           />
           <Column
             columnKey="PatientName"
             header={<CellHeader {...this.props}>Patient Name</CellHeader>}
-            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
+            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
             width={100}
             flexGrow={1}
           />
           <Column
             columnKey="Body"
             header={<CellHeader {...this.props}>Message</CellHeader>}
-            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
-        width={100}
-        flexGrow={2}
-        />
-        <Column
-        columnKey="SentDateTime"
-        header={<CellHeader {...this.props}>Date</CellHeader>}
-        cell={<DateCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
-        width={100}
-        flexGrow={1}
-        />
-        <Column
-        columnKey="AddOn"
-        header={<CellHeader {...this.props}>Add-on</CellHeader>}
-        cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
-        width={100}
-        />
-        <Column
-        columnKey="Status"
-        header={<CellHeader {...this.props}>Status</CellHeader>}
-        cell={<StatusCell data={messages} onMessageClicked={this.updateSelectedMessage} />}
-        width={100}
-        flexGrow={1}
-        />
+            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+            width={100}
+            flexGrow={2}
+          />
+          <Column
+            columnKey="SentDateTime"
+            header={<CellHeader {...this.props}>Date</CellHeader>}
+            cell={<DateCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+            width={100}
+            flexGrow={1}
+          />
+          <Column
+            columnKey="AddOn"
+            header={<CellHeader {...this.props}>Add-on</CellHeader>}
+            cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+            width={100}
+          />
+          <Column
+            columnKey="Status"
+            header={<CellHeader {...this.props}>Status</CellHeader>}
+            cell={<StatusCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+            width={100}
+            flexGrow={1}
+          />
         </Table>
       );
     }
 
     return (
       <div className="message main-panel">
-      <div className="inbox">
-      {panelContent}
-      <CloseButton />
-      </div>
-      <Message messageId={this.props.inbox.messageId}/>
+        <div className="inbox">
+          {panelContent}
+          <CloseButton />
+        </div>
+        <MessageDetail message={this.props.inbox.activeMessage}/>
       </div>
     );
   }
@@ -114,4 +114,4 @@ function mapStateToProps(state) {
   return { inbox: state.inbox };
 }
 
-export default connect(mapStateToProps, { fetchMessages, sortMessages })(Inbox);
+export default connect(mapStateToProps, { fetchMessages, sortMessages, fetchMessage })(Inbox);

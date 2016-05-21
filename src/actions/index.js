@@ -28,9 +28,18 @@ export function sortMessages(sortKey) {
   };
 }
 
-export function selectMessage(messageId) {
-  return {
-    type: MESSAGE_SELECTED,
-    payload: messageId
+export function fetchMessage(messageId) {
+  // console.log(`searching for message with id ${messageId}`);
+  const VENSA_MESSAGE_ENDPOINT = `http://vensawebtest.azurewebsites.net/message/${messageId}`;
+  return (dispatch) => {
+
+    return fetch(VENSA_MESSAGE_ENDPOINT)
+    .then(response => response.json())
+    .then((message) => {
+      dispatch({
+        type: MESSAGE_SELECTED,
+        payload: message
+      });
+    });
   };
 }
