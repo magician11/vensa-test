@@ -4,13 +4,19 @@ import { Cell } from 'fixed-data-table';
 class DataCell extends Component {
 
   onCellClicked() {
-    this.props.onMessageClicked(this.props.data[this.props.rowIndex].Id);
+    this.props.onMessageClicked(this.props.data[this.props.rowIndex].Id, this.props.rowIndex);
   }
 
   render() {
-    const {rowIndex, columnKey, data, ...props} = this.props;
+    const {rowIndex, columnKey, data, selectedRow, ...props} = this.props;
+
+    let classes = 'inbox-cell';
+    if (selectedRow === rowIndex) {
+      classes += ' selectedRow';
+    }
+
     return (
-      <Cell {...props} onClick={this.onCellClicked.bind(this)} className="inbox-cell">
+      <Cell {...props} onClick={this.onCellClicked.bind(this)} className={classes}>
         {data[rowIndex][columnKey]}
       </Cell>
     );

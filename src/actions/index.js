@@ -22,17 +22,28 @@ export function fetchMessages() {
   };
 }
 
-export function sortMessages(sortKey) {
+export function sortMessages(messages, sortKey) {
+  const sortedMessages = messages.concat().sort((a, b) => {
+    const aVal = a[sortKey];
+    const bVal = b[sortKey];
+    if (aVal < bVal) {
+      return -1;
+    } else if (aVal > bVal) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
   return {
     type: SORT_MESSAGES,
-    payload: sortKey
+    payload: { sortKey, sortedMessages }
   };
 }
 
-export function fetchMessage(messageId) {
+export function fetchMessage(messageId, rowIndex) {
   const VENSA_MESSAGE_ENDPOINT = `http://vensawebtest.azurewebsites.net/message/${messageId}`;
   return (dispatch) => {
-    dispatch({ type: FETCHING_MESSAGE });
+    dispatch({ type: FETCHING_MESSAGE, payload: rowIndex });
 
     return fetch(VENSA_MESSAGE_ENDPOINT)
     .then(response => response.json())

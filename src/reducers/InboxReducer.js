@@ -4,8 +4,9 @@ const INITIAL_STATE = {
   messages: [],
   isFetchingMessages: false,
   isFetchingMessage: false,
-  sortKey: 'SentDateTime',
-  activeMessage: null
+  sortKey: '',
+  activeMessage: null,
+  activeRowIndex: null
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -15,11 +16,11 @@ export default function (state = INITIAL_STATE, action) {
     case RECEIVED_MESSAGES:
     return { ...state, isFetchingMessages: false, messages: action.payload };
     case FETCHING_MESSAGE:
-    return { ...state, isFetchingMessage: true };
+    return { ...state, isFetchingMessage: true, activeRowIndex: action.payload };
     case RECEIVED_MESSAGE:
     return { ...state, isFetchingMessage: false, activeMessage: action.payload };
     case SORT_MESSAGES:
-    return { ...state, sortKey: action.payload };
+    return { ...state, sortKey: action.payload.sortKey, messages: action.payload.sortedMessages, activeRowIndex: null };
     default: return state;
   }
 }

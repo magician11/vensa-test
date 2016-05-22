@@ -17,29 +17,12 @@ class Inbox extends Component {
     }
   }
 
-  sortInbox() {
-    const { messages, sortKey } = this.props.inbox;
-    messages.sort((a, b) => {
-      const aVal = a[sortKey];
-      const bVal = b[sortKey];
-      if(aVal < bVal) {
-        return -1;
-      } else if(aVal > bVal) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-  }
-
-  updateSelectedMessage(messageId) {
-    this.props.fetchMessage(messageId);
+  updateSelectedMessage(messageId, rowIndex) {
+    this.props.fetchMessage(messageId, rowIndex);
   }
 
   render() {
-    this.sortInbox();
-
-    const messages = this.props.inbox.messages;
+    const { messages, activeRowIndex } = this.props.inbox;
     let panelContent;
 
     if (this.props.inbox.isFetching || (messages.length === 0)) {
@@ -64,40 +47,40 @@ class Inbox extends Component {
             <Column
               columnKey="NHI"
               header={<CellHeader {...this.props}>NHI</CellHeader>}
-              cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              cell={<DataCell selectedRow={activeRowIndex} data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
               width={100}
             />
             <Column
               columnKey="PatientName"
               header={<CellHeader {...this.props}>Patient Name</CellHeader>}
-              cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              cell={<DataCell selectedRow={activeRowIndex} data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
               width={100}
               flexGrow={1}
             />
             <Column
               columnKey="Body"
               header={<CellHeader {...this.props}>Message</CellHeader>}
-              cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              cell={<DataCell selectedRow={activeRowIndex} data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
               width={100}
               flexGrow={2}
             />
             <Column
               columnKey="SentDateTime"
               header={<CellHeader {...this.props}>Date</CellHeader>}
-              cell={<DateCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              cell={<DateCell selectedRow={activeRowIndex} data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
               width={100}
               flexGrow={1}
             />
             <Column
               columnKey="AddOn"
               header={<CellHeader {...this.props}>Add-on</CellHeader>}
-              cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              cell={<DataCell selectedRow={activeRowIndex} data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
               width={100}
             />
             <Column
               columnKey="Status"
               header={<CellHeader {...this.props}>Status</CellHeader>}
-              cell={<StatusCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              cell={<StatusCell selectedRow={activeRowIndex} data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
               width={100}
               flexGrow={1}
             />

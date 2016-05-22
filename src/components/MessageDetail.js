@@ -2,7 +2,7 @@ import React from 'react';
 import vensaTable from '../modules/VensaTable';
 
 const MessageDetail = (props) => {
-  const { isFetchingMessage, activeMessage } = props.message;
+  const { isFetchingMessage, activeMessage, messages } = props.message;
   let messageContent;
   if (isFetchingMessage) {
     messageContent = (
@@ -34,7 +34,7 @@ const MessageDetail = (props) => {
         </tbody>
       </table>
     );
-  } else {
+  } else if (messages.length > 0 ){
     messageContent = (
       <table>
         <tbody>

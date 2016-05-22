@@ -2,7 +2,7 @@ import React from 'react';
 import { Cell } from 'fixed-data-table';
 
 const CellHeader = ({children, columnKey, ...props}) => {
-  const clickCellHeader = () => props.sortMessages(columnKey);
+  const clickCellHeader = () => props.sortMessages(props.inbox.messages, columnKey);
 
   let classes = 'cell-header';
   let icon = '';
