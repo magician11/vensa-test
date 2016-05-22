@@ -1,17 +1,18 @@
 import React from 'react';
+import vensaTable from '../modules/VensaTable';
 
 const MessageDetail = (props) => {
-
   const message = props.message;
-  // console.log(message);
   let messageContent;
 
   if (message) {
+    const { statusName, statusColor } = vensaTable.getHumanReadableStatus(message.Status);
+
     messageContent = (
       <table>
         <tbody>
           <tr><td>Message ID:</td><td>{message.Id}</td></tr>
-          <tr><td>Status:</td><td>{message.Status}</td></tr>
+          <tr><td>Status:</td><td className={statusColor}>{statusName}</td></tr>
           <tr><td>Sent:</td><td>{message.SentDateTime}</td></tr>
           <tr><td>Message:</td><td>{message.Body}</td></tr>
           <tr><td>NHI:</td><td>{message.NHI}</td></tr>

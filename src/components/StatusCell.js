@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Cell } from 'fixed-data-table';
+import vensaTable from '../modules/VensaTable';
 
 class StatusCell extends Component {
   onCellClicked() {
@@ -10,23 +11,7 @@ class StatusCell extends Component {
     const {rowIndex, columnKey, data, ...props} = this.props;
     const statusId = data[rowIndex][columnKey];
 
-    let statusColor;
-    let statusName;
-
-    switch(statusId) {
-      case 4: statusName = 'Sent';
-      statusColor = 'green';
-      case 1: statusName = 'ToBeSent';
-      case 2: statusName = 'Pushed';
-      case 8: statusName = 'Delivered';
-      case 16: statusName = 'Replied';
-      statusColor = 'yellow';
-      break;
-      case 32: statusName = 'Error';
-      case 64: statusName = 'Unreachable';
-      statusColor = 'red';
-      break;
-    }
+    const { statusName, statusColor } = vensaTable.getHumanReadableStatus(statusId);
 
     const date = new Date();
     return (
