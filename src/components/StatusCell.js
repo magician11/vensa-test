@@ -16,7 +16,7 @@ class StatusCell extends Component {
     const date = new Date();
     return (
       <Cell {...props} className="inbox-cell" onClick={this.onCellClicked.bind(this)}>
-      <div className={statusColor}>{statusName}</div>
+        <div className={statusColor}>{statusName}</div>
       </Cell>
     );
   }

@@ -40,14 +40,13 @@ class Inbox extends Component {
     this.sortInbox();
 
     const messages = this.props.inbox.messages;
-    // console.log(messages[0]);
     let panelContent;
 
     if (this.props.inbox.isFetching || (messages.length === 0)) {
       panelContent = (
         <div className="loader">
-        <i className="fa fa-leaf fa-spin fa-4x"></i>
-        <h2>Loading...</h2>
+          <i className="fa fa-leaf fa-spin fa-4x"></i>
+          <h2>Loading...</h2>
         <span className="sr-only">Loading...</span>
         </div>
       );
@@ -106,11 +105,11 @@ class Inbox extends Component {
 
     return (
       <div className="message main-panel">
-      <div className="inbox">
-      {panelContent}
-      <CloseButton />
-      </div>
-      <MessageDetail message={this.props.inbox.activeMessage}/>
+        <div className="inbox">
+          {panelContent}
+          <CloseButton />
+        </div>
+        <MessageDetail message={this.props.inbox}/>
       </div>
     );
   }

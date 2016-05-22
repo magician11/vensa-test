@@ -4,6 +4,7 @@ $black: #000000;
 $yellow: #FFFF00;
 $red: #FF0000;
 $green: #008000;
+$blue: #0000FF;
 $opacityLevel: 0.3;
 
 /* MIXINS */
@@ -130,12 +131,13 @@ header img {
   color: $black;
 }
 
+.loader {
+  text-align: center;
+}
+
 .inbox {
   flex: 0 0 65%;
-
-  .loader {
-    text-align: center;
-  }
+  margin: 0.8rem;
 
   .inbox-cell {
     cursor: pointer;
@@ -147,7 +149,7 @@ header img {
   }
 
   .cell-header.active a {
-    color: $green;
+    color: $blue;
   }
 
   .close-button {
@@ -159,9 +161,10 @@ header img {
 .message-detail {
   flex: 1;
   min-height: 550px;
+  margin-top: 1rem;
 
   table {
-    margin: 3rem;
+    margin: 1rem;
     border: 1px solid;
     border-collapse: collapse;
   }
@@ -169,14 +172,6 @@ header img {
   td {
     border-bottom: 1px solid $black;
     padding: 0.8rem;
-  }
-
-  p {
-    text-align: center;
-    background-color: darken($white, 33%);
-    padding: 2rem;
-    margin: 3rem 0.3rem;
-    border-radius: 0.3rem;
   }
 }
 

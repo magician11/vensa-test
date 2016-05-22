@@ -3,11 +3,17 @@ import { Cell } from 'fixed-data-table';
 
 const CellHeader = ({children, columnKey, ...props}) => {
   const clickCellHeader = () => props.sortMessages(columnKey);
-  const classes = `cell-header ${(columnKey === props.inbox.sortKey)? 'active' : ''}`;
+
+  let classes = 'cell-header';
+  let icon = '';
+  if (columnKey === props.inbox.sortKey) {
+    classes += ' active';
+    icon = <i className="fa fa-caret-square-o-down"></i>;
+  }
   return (
     <Cell {...props} className={classes}>
       <a onClick={clickCellHeader}>
-        {children}
+        {children} {icon}
       </a>
     </Cell>
   );

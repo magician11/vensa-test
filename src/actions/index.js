@@ -2,8 +2,9 @@ import fetch from 'isomorphic-fetch';
 
 export const FETCHING_MESSAGES = 'FETCHING_MESSAGES';
 export const RECEIVED_MESSAGES = 'RECEIVED_MESSAGES';
+export const FETCHING_MESSAGE = 'FETCHING_MESSAGE';
+export const RECEIVED_MESSAGE = 'RECEIVED_MESSAGE';
 export const SORT_MESSAGES = 'SORT_MESSAGES';
-export const MESSAGE_SELECTED = 'MESSAGE_SELECTED';
 
 export function fetchMessages() {
   const VENSA_MESSAGE_ENDPOINT = 'http://vensawebtest.azurewebsites.net/message';
@@ -29,15 +30,15 @@ export function sortMessages(sortKey) {
 }
 
 export function fetchMessage(messageId) {
-  // console.log(`searching for message with id ${messageId}`);
   const VENSA_MESSAGE_ENDPOINT = `http://vensawebtest.azurewebsites.net/message/${messageId}`;
   return (dispatch) => {
+    dispatch({ type: FETCHING_MESSAGE });
 
     return fetch(VENSA_MESSAGE_ENDPOINT)
     .then(response => response.json())
     .then((message) => {
       dispatch({
-        type: MESSAGE_SELECTED,
+        type: RECEIVED_MESSAGE,
         payload: message
       });
     });

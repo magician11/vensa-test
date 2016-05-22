@@ -4,21 +4,24 @@ class VensaTable {
     let statusName;
 
     switch (statusId) {
-      case 4: statusName = 'Sent';
-        statusColor = 'green';
-        break;
-      case 1: statusName = 'ToBeSent';
-      case 2: statusName = 'Pushed';
-      case 8: statusName = 'Delivered';
-      case 16: statusName = 'Replied';
-        statusColor = 'yellow';
-        break;
-      case 32: statusName = 'Error';
-      case 64: statusName = 'Unreachable';
-        statusColor = 'red';
-        break;
-      default: statusName = 'Unknown';
-        statusColor = 'black';
+      case 1: statusName = 'ToBeSent'; break;
+      case 2: statusName = 'Pushed'; break;
+      case 4: statusName = 'Sent'; break;
+      case 8: statusName = 'Delivered'; break;
+      case 16: statusName = 'Replied'; break;
+      case 32: statusName = 'Error'; break;
+      case 64: statusName = 'Unreachable'; break;
+      default: statusName = 'Unknown'; break;
+    }
+
+    if (statusId === 4) {
+      statusColor = 'green';
+    } else if (statusId === 1 || statusId === 2 || statusId === 8 || statusId === 16) {
+      statusColor = 'yellow';
+    } else if (statusId === 32 || statusId === 64) {
+      statusColor = 'red';
+    } else {
+      statusColor = 'black';
     }
 
     return { statusName, statusColor };
