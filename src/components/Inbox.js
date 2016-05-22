@@ -47,59 +47,62 @@ class Inbox extends Component {
         <div className="loader">
           <i className="fa fa-leaf fa-spin fa-4x"></i>
           <h2>Loading...</h2>
-        <span className="sr-only">Loading...</span>
+          <span className="sr-only">Loading...</span>
         </div>
       );
     } else {
       panelContent = (
-        <Table
-        rowHeight={50}
-        rowsCount={messages.length}
-        width={900}
-        height={650}
-        headerHeight={50}
-        >
-        <Column
-        columnKey="NHI"
-        header={<CellHeader {...this.props}>NHI</CellHeader>}
-        cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
-        width={100}
-        />
-        <Column
-        columnKey="PatientName"
-        header={<CellHeader {...this.props}>Patient Name</CellHeader>}
-        cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
-        width={100}
-        flexGrow={1}
-        />
-        <Column
-        columnKey="Body"
-        header={<CellHeader {...this.props}>Message</CellHeader>}
-        cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
-        width={100}
-        flexGrow={2}
-        />
-        <Column
-        columnKey="SentDateTime"
-        header={<CellHeader {...this.props}>Date</CellHeader>}
-        cell={<DateCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
-        width={100}
-        flexGrow={1}
-        />
-        <Column
-        columnKey="AddOn"
-        header={<CellHeader {...this.props}>Add-on</CellHeader>}
-        cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
-        width={100}
-        />
-        <Column
-        columnKey="Status"
-        header={<CellHeader {...this.props}>Status</CellHeader>}
-        cell={<StatusCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
-        width={100}
-        flexGrow={1}
-        />
-        </Table>
+        <div>
+          <p>Showing {messages.length} messages...</p>
+          <Table
+            rowHeight={50}
+            rowsCount={messages.length}
+            width={900}
+            height={650}
+            headerHeight={50}
+          >
+            <Column
+              columnKey="NHI"
+              header={<CellHeader {...this.props}>NHI</CellHeader>}
+              cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              width={100}
+            />
+            <Column
+              columnKey="PatientName"
+              header={<CellHeader {...this.props}>Patient Name</CellHeader>}
+              cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              width={100}
+              flexGrow={1}
+            />
+            <Column
+              columnKey="Body"
+              header={<CellHeader {...this.props}>Message</CellHeader>}
+              cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              width={100}
+              flexGrow={2}
+            />
+            <Column
+              columnKey="SentDateTime"
+              header={<CellHeader {...this.props}>Date</CellHeader>}
+              cell={<DateCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              width={100}
+              flexGrow={1}
+            />
+            <Column
+              columnKey="AddOn"
+              header={<CellHeader {...this.props}>Add-on</CellHeader>}
+              cell={<DataCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              width={100}
+            />
+            <Column
+              columnKey="Status"
+              header={<CellHeader {...this.props}>Status</CellHeader>}
+              cell={<StatusCell data={messages} onMessageClicked={this.updateSelectedMessage.bind(this)} />}
+              width={100}
+              flexGrow={1}
+            />
+          </Table>
+        </div>
       );
     }
 
