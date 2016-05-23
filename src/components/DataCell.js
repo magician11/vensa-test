@@ -17,7 +17,7 @@ class DataCell extends Component {
 
     return (
       <Cell {...props} onClick={this.onCellClicked.bind(this)} className={classes}>
-        {data[rowIndex][columnKey]}
+        {data[rowIndex][columnKey].substring(0,44)}
       </Cell>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Cell } from 'fixed-data-table';
-import Time from 'react-time'
+import vensaTable from '../modules/VensaTable';
 
 class DateCell extends Component {
 
@@ -19,7 +19,7 @@ class DateCell extends Component {
 
     return (
       <Cell {...props} onClick={this.onCellClicked.bind(this)} className={classes}>
-        <Time value={date} format="DD MMMM YY" />
+        {vensaTable.getHumanReadableDate(date)}
       </Cell>
     );
   }

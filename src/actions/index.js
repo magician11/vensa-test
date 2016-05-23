@@ -5,6 +5,7 @@ export const RECEIVED_MESSAGES = 'RECEIVED_MESSAGES';
 export const FETCHING_MESSAGE = 'FETCHING_MESSAGE';
 export const RECEIVED_MESSAGE = 'RECEIVED_MESSAGE';
 export const SORT_MESSAGES = 'SORT_MESSAGES';
+export const UPDATE_FILTER = 'UPDATE_FILTER';
 
 export function fetchMessages() {
   const VENSA_MESSAGE_ENDPOINT = 'http://vensawebtest.azurewebsites.net/message/10000';
@@ -19,6 +20,13 @@ export function fetchMessages() {
         payload: messages
       });
     });
+  };
+}
+
+export function updateFilterString(newFilterString) {
+  return {
+    type: UPDATE_FILTER,
+    payload: newFilterString
   };
 }
 

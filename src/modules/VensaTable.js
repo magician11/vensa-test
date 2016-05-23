@@ -1,3 +1,6 @@
+import Time from 'react-time';
+import React from 'react';
+
 class VensaTable {
   getHumanReadableStatus(statusId) {
     let statusColor;
@@ -25,6 +28,10 @@ class VensaTable {
     }
 
     return { statusName, statusColor };
+  }
+
+  getHumanReadableDate(date) {
+    return <Time value={date} format="DD MMMM YY" />;
   }
 }
 

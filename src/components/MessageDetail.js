@@ -20,7 +20,7 @@ const MessageDetail = (props) => {
         <tbody>
           <tr><td>Message ID:</td><td>{activeMessage.Id}</td></tr>
           <tr><td>Status:</td><td className={statusColor}>{statusName}</td></tr>
-          <tr><td>Sent:</td><td>{activeMessage.SentDateTime}</td></tr>
+          <tr><td>Sent:</td><td>{vensaTable.getHumanReadableDate(activeMessage.SentDateTime)}</td></tr>
           <tr><td>Message:</td><td>{activeMessage.Body}</td></tr>
           <tr><td>NHI:</td><td>{activeMessage.NHI}</td></tr>
           <tr><td>Patient Name:</td><td>{activeMessage.PatientName}</td></tr>
