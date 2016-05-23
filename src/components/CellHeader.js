@@ -1,7 +1,7 @@
 import React from 'react';
 import { Cell } from 'fixed-data-table';
 
-const CellHeader = ({children, columnKey, ...props}) => {
+const CellHeader = ({ children, columnKey, ...props }) => {
   const clickCellHeader = () => props.sortMessages(props.inbox.messages, columnKey);
 
   let classes = 'cell-header';
@@ -17,6 +17,13 @@ const CellHeader = ({children, columnKey, ...props}) => {
       </a>
     </Cell>
   );
+};
+
+CellHeader.propTypes = {
+  children: React.PropTypes.array.isRequired,
+  columnKey: React.PropTypes.number.isRequired,
+  sortMessages: React.PropTypes.func.isRequired,
+  inbox: React.PropTypes.object.isRequired
 };
 
 export default CellHeader;

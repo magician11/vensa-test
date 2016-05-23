@@ -34,7 +34,7 @@ const MessageDetail = (props) => {
         </tbody>
       </table>
     );
-  } else if (messages.length > 0 ){
+  } else if (messages.length > 0) {
     messageContent = (
       <table>
         <tbody>
@@ -49,6 +49,10 @@ const MessageDetail = (props) => {
       {messageContent}
     </div>
   );
+};
+
+MessageDetail.propTypes = {
+  message: React.PropTypes.object.isRequired
 };
 
 export default MessageDetail;
